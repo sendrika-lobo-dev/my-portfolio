@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=index.html#catalog">
+  <title>Redirecting to Catalog | TrendNEXT</title>
+  <script>
+    // Seamlessly forward query parameters like ?category=women to the Home page catalog
+    const params = window.location.search;
+    window.location.replace('index.html' + (params ? params + '#catalog' : '#catalog'));
+  </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 3rem;">
+  <h2>Redirecting to TrendNEXT Catalog...</h2>
+  <p><a href="index.html#catalog">Click here if you are not redirected automatically.</a></p>
+</body>
+</html>

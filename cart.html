@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | TrendNEXT</title>
+  <meta name="description" content="View items in your TrendNEXT shopping cart, apply coupon FIRST10 for 10% off, and proceed to simulated secure checkout.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span class="tagline">✨ BE THE TREND WHERE FASHION MEETS COMFORT ✨</span>
+    <span class="coupon-pill" onclick="applyFirst10Directly()">
+      USE CODE: <strong>FIRST10</strong> FOR 10% OFF
+    </span>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">TrendNEXT<span class="dot">.</span></span>
+        <span class="brand-sub">Fashion & Comfort</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="index.html#catalog" class="nav-link">Catalog</a>
+        <a href="wishlist.html" class="nav-link">Wishlist</a>
+        <a href="trials.html" class="nav-link">Trials</a>
+        <a href="cart.html" class="nav-link active">Cart</a>
+        <a href="payment.html" class="nav-link">Payment</a>
+        <a href="feedback.html" class="nav-link">Feedback</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="index.html#catalog" class="nav-action-btn" title="Search Catalog">🔍</a>
+        <a href="wishlist.html" class="nav-action-btn" title="My Wishlist">
+          ♥
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="cart.html" class="nav-action-btn" title="My Cart">
+          🛒
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="drawer-header">
+        <span class="brand-logo" style="font-size: 1.4rem;">TrendNEXT<span class="dot">.</span></span>
+        <button id="closeMobileNav" style="font-size: 1.5rem; color: var(--text-primary);">✕</button>
+      </div>
+      <ul class="drawer-nav-list">
+        <li><a href="index.html" class="drawer-nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="drawer-nav-link">ℹ About Us</a></li>
+        <li><a href="index.html#catalog" class="drawer-nav-link">🛍️ Explore Catalog</a></li>
+        <li><a href="wishlist.html" class="drawer-nav-link">♥ My Wishlist</a></li>
+        <li><a href="trials.html" class="drawer-nav-link">📸 Customer Trials</a></li>
+        <li><a href="cart.html" class="drawer-nav-link active">🛒 Shopping Cart</a></li>
+        <li><a href="payment.html" class="drawer-nav-link">💳 Payment & Checkout</a></li>
+        <li><a href="feedback.html" class="drawer-nav-link">⭐ Customer Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main style="padding: 3rem 0 5rem;">
+    <div class="container">
+      
+      <!-- Top Title -->
+      <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Shopping Cart</h1>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          Review your items, apply beginner promo discount, and proceed to demo checkout.
+        </p>
+      </div>
+
+      <!-- Main Cart Layout -->
+      <div id="cartContentWrapper" class="cart-layout">
+        
+        <!-- Cart Items List Card -->
+        <div class="cart-items-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light); margin-bottom: 1rem;">
+            <h3 style="font-size: 1.15rem;" id="cartItemCountHeader">Cart Items (0)</h3>
+            <button onclick="clearEntireCart()" style="font-size: 0.8rem; color: var(--danger); font-weight: 700;">Clear All</button>
+          </div>
+
+          <div id="cartItemsList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Order Summary & Coupon Card -->
+        <div class="order-summary-card">
+          <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Order Summary</h3>
+
+          <!-- Coupon Input Box -->
+          <div class="coupon-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">🎁 Have a Promo Code?</span>
+              <span style="font-size: 0.75rem; color: var(--text-secondary); cursor: pointer; text-decoration: underline;" onclick="applyFirst10Directly()">Use FIRST10</span>
+            </div>
+            <div class="coupon-input-group">
+              <input type="text" id="couponInput" placeholder="ENTER FIRST10" maxlength="12">
+              <button class="btn btn-primary btn-sm" onclick="applyCouponCode()">Apply</button>
+            </div>
+            <div id="couponStatusMessage" style="font-size: 0.75rem; margin-top: 0.4rem; font-weight: 600;"></div>
+          </div>
+
+          <!-- Price Calculation Rows -->
+          <div class="order-summary-row">
+            <span>Bag Total (MRP)</span>
+            <span id="summarySubtotal">₹0</span>
+          </div>
+
+          <div class="order-summary-row" id="couponDiscountRow" style="color: var(--success); display: none;">
+            <span>Coupon Discount (10% OFF)</span>
+            <span id="summaryDiscount">-₹0</span>
+          </div>
+
+          <div class="order-summary-row">
+            <span>Estimated Delivery Fee</span>
+            <span id="summaryDelivery" style="color: var(--success);">FREE</span>
+          </div>
+
+          <div class="order-summary-row total">
+            <span>Final Payable Amount</span>
+            <span id="summaryFinalTotal">₹0</span>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <a href="payment.html" class="btn btn-accent btn-full btn-lg" id="checkoutBtn">
+              Proceed to Payment →
+            </a>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-light); font-size: 0.775rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span>🛡️</span> 100% Safe & Secure Checkout Simulation
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span>📦</span> Free Shipping on Orders above ₹499
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏷️</span> Every Item Guaranteed Under ₹5000
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty Cart State -->
+      <div id="cartEmptyState" class="empty-state" style="display: none;">
+        <div class="empty-state-icon">🛒</div>
+        <h3>Your Shopping Bag is Empty</h3>
+        <p>Looks like you haven't added any trendy items to your cart yet. Explore our curated collections under ₹5000!</p>
+        <a href="index.html#catalog" class="btn btn-primary btn-lg">Start Shopping Now</a>
+      </div>
+
+      <!-- Recommended Add-ons -->
+      <div style="margin-top: 4.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border-light);">
+        <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+          <span class="section-tag">Recommended for You</span>
+          <h3 style="font-size: 1.5rem;">You May Also Like</h3>
+        </div>
+        <div class="products-grid" id="cartRecommendationsGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-logo" style="color: #ffffff;">TrendNEXT<span class="dot">.</span></span>
+          <p>
+            <strong>"BE THE TREND WHERE FASHION MEETS COMFORT"</strong><br>
+            All products strictly below ₹5000.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#catalog">Explore Catalog</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="trials.html">Customer Trials</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="payment.html">Payment Simulation</a></li>
+            <li><a href="feedback.html">Submit Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>New User Offer</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Code <strong>FIRST10</strong> is active for your cart.
+          </p>
+          <button class="btn btn-sm btn-outline-dark" style="color: #ffffff; border-color: #475569;" onclick="applyFirst10Directly()">Apply Code Now</button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 TrendNEXT. "Be the Trend Where Fashion Meets Comfort".</p>
+        <p>Built with HTML5, CSS3 & JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function renderCartPage() {
+      const cart = Storage.getCart();
+      const list = document.getElementById('cartItemsList');
+      const wrapper = document.getElementById('cartContentWrapper');
+      const emptyState = document.getElementById('cartEmptyState');
+      const headerCount = document.getElementById('cartItemCountHeader');
+
+      if (cart.length === 0) {
+        wrapper.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      wrapper.style.display = 'grid';
+
+      const totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      headerCount.textContent = `Cart Items (${totalItemsCount})`;
+
+      list.innerHTML = cart.map((item, index) => {
+        const itemTotal = item.price * item.qty;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null; this.src='images/girls_collection.jpg';">
+            <div class="cart-item-details">
+              <span class="product-badge-category" style="position: static; display: inline-block; margin-bottom: 0.35rem; font-size: 0.65rem; background: var(--primary-light); color: var(--primary);">
+                ${item.category ? item.category.toUpperCase() : 'FASHION'}
+              </span>
+              <h4>${item.title}</h4>
+              <div class="cart-item-meta">
+                <span>Size: <strong>${item.size || 'Standard'}</strong></span>
+                <span>Price: ₹${item.price.toLocaleString('en-IN')}</span>
+              </div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="updateCartQuantity(${index}, -1)" title="Decrease Quantity">-</button>
+                <span class="qty-val">${item.qty}</span>
+                <button class="qty-btn" onclick="updateCartQuantity(${index}, 1)" title="Increase Quantity">+</button>
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span class="cart-item-price">₹${itemTotal.toLocaleString('en-IN')}</span>
+              <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                🗑 Remove
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateOrderSummaryUI();
+      renderRecommendations('women', 'cartRecommendationsGrid', 4);
+    }
+
+    function updateOrderSummaryUI() {
+      const { subtotal, discount, deliveryFee, finalTotal, coupon } = calculateCartTotals();
+
+      document.getElementById('summarySubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      
+      const discountRow = document.getElementById('couponDiscountRow');
+      const statusMsg = document.getElementById('couponStatusMessage');
+      const couponInput = document.getElementById('couponInput');
+
+      if (coupon === 'FIRST10' && discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('summaryDiscount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
+        couponInput.value = 'FIRST10';
+        statusMsg.innerHTML = `<span style="color: var(--success);">✓ Coupon FIRST10 applied (10% OFF Saved ₹${discount})</span>`;
+      } else {
+        discountRow.style.display = 'none';
+        if (coupon && coupon !== 'FIRST10') {
+          statusMsg.innerHTML = `<span style="color: var(--danger);">✕ Invalid coupon code</span>`;
+        } else {
+          statusMsg.innerHTML = '';
+        }
+      }
+
+      document.getElementById('summaryDelivery').textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
+      document.getElementById('summaryFinalTotal').textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+    }
+
+    function applyCouponCode() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (!code) return;
+
+      if (code === 'FIRST10') {
+        Storage.setCoupon('FIRST10');
+        showToast('Coupon FIRST10 applied! 10% discount added.', 'success');
+      } else {
+        Storage.setCoupon(null);
+        showToast('Invalid Coupon. Use FIRST10 for 10% discount.', 'error');
+      }
+      updateOrderSummaryUI();
+    }
+
+    function applyFirst10Directly() {
+      document.getElementById('couponInput').value = 'FIRST10';
+      applyCouponCode();
+    }
+
+    function clearEntireCart() {
+      if (confirm('Are you sure you want to remove all items from your cart?')) {
+        Storage.setCart([]);
+        showToast('Cart cleared', 'info');
+        renderCartPage();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist | TrendNEXT</title>
+  <meta name="description"
+    content="Manage your favorite saved fashion items on TrendNEXT. Move to cart or shop more styles under ₹5000.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span class="tagline">✨ BE THE TREND WHERE FASHION MEETS COMFORT ✨</span>
+    <span class="coupon-pill"
+      onclick="navigator.clipboard.writeText('FIRST10'); showToast('Coupon FIRST10 copied! (10% OFF)');">
+      USE CODE: <strong>FIRST10</strong> FOR 10% OFF
+    </span>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">TrendNEXT<span class="dot">.</span></span>
+        <span class="brand-sub">Fashion & Comfort</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="index.html#catalog" class="nav-link">Catalog</a>
+        <a href="wishlist.html" class="nav-link active">Wishlist</a>
+        <a href="trials.html" class="nav-link">Trials</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <a href="payment.html" class="nav-link">Payment</a>
+        <a href="feedback.html" class="nav-link">Feedback</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="index.html#catalog" class="nav-action-btn" title="Search Catalog">🔍</a>
+        <a href="wishlist.html" class="nav-action-btn" title="My Wishlist">
+          ♥
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="cart.html" class="nav-action-btn" title="My Cart">
+          🛒
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="drawer-header">
+        <span class="brand-logo" style="font-size: 1.4rem;">TrendNEXT<span class="dot">.</span></span>
+        <button id="closeMobileNav" style="font-size: 1.5rem; color: var(--text-primary);">✕</button>
+      </div>
+      <ul class="drawer-nav-list">
+        <li><a href="index.html" class="drawer-nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="drawer-nav-link">ℹ About Us</a></li>
+        <li><a href="index.html#catalog" class="drawer-nav-link">🛍️ Explore Catalog</a></li>
+        <li><a href="wishlist.html" class="drawer-nav-link active">♥ My Wishlist</a></li>
+        <li><a href="trials.html" class="drawer-nav-link">📸 Customer Trials</a></li>
+        <li><a href="cart.html" class="drawer-nav-link">🛒 Shopping Cart</a></li>
+        <li><a href="payment.html" class="drawer-nav-link">💳 Payment & Checkout</a></li>
+        <li><a href="feedback.html" class="drawer-nav-link">⭐ Customer Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main style="padding: 3rem 0 5rem;">
+    <div class="container">
+
+      <!-- Top Title & Controls -->
+      <div
+        style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-light);">
+        <div>
+          <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">My Saved Wishlist</h1>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Keep track of your favorite styles and move them to cart whenever you're ready.
+          </p>
+        </div>
+        <div id="wishlistActions" style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-outline-dark btn-sm" onclick="moveAllWishlistToCart()">Add All to Cart</button>
+          <button class="btn btn-sm" style="color: var(--danger); background: #fee2e2;" onclick="clearWishlist()">Clear
+            Wishlist</button>
+        </div>
+      </div>
+
+      <!-- Wishlist Products Grid -->
+      <div class="products-grid" id="wishlistGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="wishlistEmptyState" class="empty-state" style="display: none;">
+        <div class="empty-state-icon" style="background: var(--accent-light); color: var(--accent);">♥</div>
+        <h3>Your Wishlist is Empty</h3>
+        <p>You haven't saved any fashion items yet. Browse our collections and tap the heart icon on items you love!</p>
+        <a href="index.html#catalog" class="btn btn-primary btn-lg">Explore Catalog Under ₹5000</a>
+      </div>
+
+      <!-- Recommended Section -->
+      <div style="margin-top: 4.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border-light);">
+        <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+          <span class="section-tag">Recommendations</span>
+          <h3 style="font-size: 1.5rem;">More Trendy Styles For You</h3>
+        </div>
+        <div class="products-grid" id="wishlistRecommendationsGrid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-logo" style="color: #ffffff;">TrendNEXT<span class="dot">.</span></span>
+          <p>
+            <strong>"BE THE TREND WHERE FASHION MEETS COMFORT"</strong><br>
+            All products strictly below ₹5000.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#catalog">Explore Catalog</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="trials.html">Customer Trials</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="payment.html">Payment Simulation</a></li>
+            <li><a href="feedback.html">Submit Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Exclusive Discount</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Claim 10% off using coupon code <strong>FIRST10</strong>.
+          </p>
+          <a href="cart.html" class="btn btn-sm btn-accent">Go To Cart →</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 TrendNEXT. "Be the Trend Where Fashion Meets Comfort".</p>
+        <p>Built with HTML5, CSS3 & JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function renderWishlistPage() {
+      const wishlist = Storage.getWishlist();
+      const grid = document.getElementById('wishlistGrid');
+      const empty = document.getElementById('wishlistEmptyState');
+      const actions = document.getElementById('wishlistActions');
+
+      if (wishlist.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        if (actions) actions.style.display = 'none';
+      } else {
+        empty.style.display = 'none';
+        if (actions) actions.style.display = 'flex';
+
+        const wishlistProducts = PRODUCTS_DATA.filter(p => wishlist.includes(p.id));
+        grid.innerHTML = wishlistProducts.map(p => createProductCardHTML(p)).join('');
+      }
+
+      renderRecommendations('women', 'wishlistRecommendationsGrid', 4);
+    }
+
+    function moveAllWishlistToCart() {
+      const wishlist = Storage.getWishlist();
+      if (wishlist.length === 0) return;
+
+      wishlist.forEach(id => {
+        addToCart(id);
+      });
+      Storage.setWishlist([]);
+      showToast('All wishlisted items moved to cart!', 'success');
+      renderWishlistPage();
+    }
+
+    function clearWishlist() {
+      if (confirm('Are you sure you want to clear your entire wishlist?')) {
+        Storage.setWishlist([]);
+        showToast('Wishlist cleared', 'info');
+        renderWishlistPage();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderWishlistPage();
+    });
+  </script>
+</body>
+
+</html>

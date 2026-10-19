@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Feedback & Trial Review | TrendNEXT</title>
+  <meta name="description" content="Share your post-purchase experience, rate product fit, and upload trial photos on TrendNEXT.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span class="tagline">✨ BE THE TREND WHERE FASHION MEETS COMFORT ✨</span>
+    <span class="coupon-pill">
+      SHARE YOUR TRIAL & GET CHANCE TO WIN ₹500 VOUCHER
+    </span>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">TrendNEXT<span class="dot">.</span></span>
+        <span class="brand-sub">Fashion & Comfort</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="index.html#catalog" class="nav-link">Catalog</a>
+        <a href="wishlist.html" class="nav-link">Wishlist</a>
+        <a href="trials.html" class="nav-link">Trials</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <a href="payment.html" class="nav-link">Payment</a>
+        <a href="feedback.html" class="nav-link active">Feedback</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="index.html#catalog" class="nav-action-btn" title="Search Catalog">🔍</a>
+        <a href="wishlist.html" class="nav-action-btn" title="My Wishlist">
+          ♥
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="cart.html" class="nav-action-btn" title="My Cart">
+          🛒
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="drawer-header">
+        <span class="brand-logo" style="font-size: 1.4rem;">TrendNEXT<span class="dot">.</span></span>
+        <button id="closeMobileNav" style="font-size: 1.5rem; color: var(--text-primary);">✕</button>
+      </div>
+      <ul class="drawer-nav-list">
+        <li><a href="index.html" class="drawer-nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="drawer-nav-link">ℹ About Us</a></li>
+        <li><a href="index.html#catalog" class="drawer-nav-link">🛍️ Explore Catalog</a></li>
+        <li><a href="wishlist.html" class="drawer-nav-link">♥ My Wishlist</a></li>
+        <li><a href="trials.html" class="drawer-nav-link">📸 Customer Trials</a></li>
+        <li><a href="cart.html" class="drawer-nav-link">🛒 Shopping Cart</a></li>
+        <li><a href="payment.html" class="drawer-nav-link">💳 Payment & Checkout</a></li>
+        <li><a href="feedback.html" class="drawer-nav-link active">⭐ Customer Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main style="padding: 3rem 0 5rem;">
+    <div class="container">
+      
+      <!-- Feedback Card -->
+      <div class="feedback-card">
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="section-tag">Order Complete & Review</span>
+          <h1 style="font-size: 2rem; margin: 0.5rem 0 0.25rem;">Rate Your TrendNEXT Experience</h1>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Help our community by sharing how the item fits and looks! Your review will immediately appear on the <strong>Customer Trials</strong> page.
+          </p>
+        </div>
+
+        <form id="feedbackForm" onsubmit="handleFeedbackSubmission(event)">
+          <div class="form-grid">
+            
+            <div class="form-group">
+              <label class="form-label" for="fbCustName">Your Name *</label>
+              <input type="text" id="fbCustName" class="form-input" placeholder="e.g. Sendrika Lobo" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fbCity">City / Location</label>
+              <input type="text" id="fbCity" class="form-input" placeholder="e.g. Honnavar">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fbOrderId">Order ID</label>
+              <input type="text" id="fbOrderId" class="form-input" placeholder="e.g. TN-984214 (Optional)">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fbCategory">Category *</label>
+              <select id="fbCategory" class="form-select" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="women">Women</option>
+                <option value="men">Men</option>
+                <option value="girls">Girls</option>
+                <option value="boys">Boys</option>
+              </select>
+            </div>
+
+            <div class="form-group form-full">
+              <label class="form-label" for="fbProductName">Product Name *</label>
+              <input type="text" id="fbProductName" class="form-input" placeholder="e.g. Banarasi Saree, Denim Jacket..." required>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="form-group form-full">
+              <label class="form-label">Overall Rating *</label>
+              <div class="star-rating-selector" id="starRatingSelector">
+                <span class="star active" data-rating="1">★</span>
+                <span class="star active" data-rating="2">★</span>
+                <span class="star active" data-rating="3">★</span>
+                <span class="star active" data-rating="4">★</span>
+                <span class="star active" data-rating="5">★</span>
+              </div>
+              <input type="hidden" id="fbRatingVal" value="5">
+              <span id="starRatingLabel" style="font-size: 0.85rem; font-weight: 700; color: #d97706;">5.0 / 5.0 (Tap stars to change)</span>
+            </div>
+
+            <!-- Fit Feedback -->
+            <div class="form-group form-full">
+              <label class="form-label" for="fbFit">Fit & Comfort Assessment *</label>
+              <select id="fbFit" class="form-select" required>
+                <option value="" disabled selected>Select Fit & Comfort Assessment</option>
+                <option value="True to Size">True to Size (Perfect)</option>
+                <option value="Super Comfortable">Super Comfortable & Soft</option>
+                <option value="Smart Regular Fit">Smart Regular Fit</option>
+                <option value="Slightly Loose / Relaxed">Slightly Loose / Relaxed</option>
+                <option value="Snug / Tailored Fit">Snug / Tailored Fit</option>
+              </select>
+            </div>
+
+            <!-- Review Text -->
+            <div class="form-group form-full">
+              <label class="form-label" for="fbComment">Your Review & Trial Experience *</label>
+              <textarea id="fbComment" class="form-textarea" rows="4" placeholder="Tell other shoppers about the cloth feel, stitching quality, sizing fit, and overall comfort..." required></textarea>
+            </div>
+
+            <!-- Photo Selection / Upload Simulation -->
+            <div class="form-group form-full">
+              <label class="form-label">Attach Item / Trial Photo (Pick one or upload):</label>
+              <div class="photo-picker-presets" id="photoPresets">
+                <div class="photo-preset-item" data-photo="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80">
+                  <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80" alt="Silk Saree">
+                </div>
+                <div class="photo-preset-item" data-photo="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80">
+                  <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&q=80" alt="Blazer Suit">
+                </div>
+                <div class="photo-preset-item" data-photo="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80">
+                  <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=300&q=80" alt="Chiffon Frock">
+                </div>
+                <div class="photo-preset-item" data-photo="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80">
+                  <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="Acid Wash Tee">
+                </div>
+              </div>
+              <input type="hidden" id="selectedPhotoUrl" value="">
+              
+              <div style="margin-top: 0.75rem;">
+                <input type="file" id="fileUploadInput" accept="image/*" style="font-size: 0.85rem;" onchange="handleFileUpload(event)">
+              </div>
+            </div>
+
+            <div class="form-group form-full" style="margin-top: 1rem;">
+              <button type="submit" class="btn btn-accent btn-full btn-lg">
+                Publish Trial Review ⭐
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+        <!-- Post-Submission Success Message Banner -->
+        <div id="fbSuccessNotice" style="display: none; background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 2rem;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎉</div>
+          <h3 style="color: #065f46; font-size: 1.25rem; margin-bottom: 0.35rem;">Review Published Successfully!</h3>
+          <p style="color: #047857; font-size: 0.9rem; margin-bottom: 1.25rem;">
+            Thank you for sharing your feedback. Your trial review is now live on the Trials page for all TrendNEXT visitors.
+          </p>
+          <a href="trials.html" class="btn btn-primary">Go To Customer Trials Page →</a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-logo" style="color: #ffffff;">TrendNEXT<span class="dot">.</span></span>
+          <p>
+            <strong>"BE THE TREND WHERE FASHION MEETS COMFORT"</strong><br>
+            All products strictly below ₹5000.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#catalog">Explore Catalog</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="trials.html">Customer Trials</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="payment.html">Payment Simulation</a></li>
+            <li><a href="feedback.html">Submit Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Exclusive Code</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Use code <strong>FIRST10</strong> for 10% discount.
+          </p>
+          <a href="index.html#catalog" class="btn btn-sm btn-accent">Shop Catalog →</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 TrendNEXT. "Be the Trend Where Fashion Meets Comfort".</p>
+        <p>Built with HTML5, CSS3 & JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    let selectedRating = 5;
+
+    function initFeedbackForm() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlOrderId = urlParams.get('orderId');
+      const urlName = urlParams.get('name');
+      const urlItem = urlParams.get('item');
+      const urlCat = urlParams.get('cat');
+
+      let lastOrder = null;
+      try {
+        const stored = localStorage.getItem('trendnext_last_order');
+        if (stored) lastOrder = JSON.parse(stored);
+      } catch (e) {}
+
+      // Only populate fields if user just completed an order or URL parameters exist
+      if (urlOrderId || (lastOrder && lastOrder.orderId)) {
+        document.getElementById('fbOrderId').value = urlOrderId || lastOrder.orderId;
+      }
+      if (urlName || (lastOrder && lastOrder.customerName)) {
+        document.getElementById('fbCustName').value = urlName || lastOrder.customerName;
+      }
+      if (lastOrder && lastOrder.city) {
+        document.getElementById('fbCity').value = lastOrder.city;
+      }
+      if (urlItem || (lastOrder && lastOrder.productName)) {
+        document.getElementById('fbProductName').value = urlItem || lastOrder.productName;
+      }
+      
+      const cat = urlCat || (lastOrder ? lastOrder.category : '');
+      const catSelect = document.getElementById('fbCategory');
+      if (catSelect && cat) {
+        catSelect.value = cat.toLowerCase();
+      }
+
+      setupStarRating();
+      setupPhotoPresets();
+    }
+
+    function setupStarRating() {
+      const stars = document.querySelectorAll('#starRatingSelector .star');
+      const label = document.getElementById('starRatingLabel');
+      const ratingValInput = document.getElementById('fbRatingVal');
+
+      const labelsMap = {
+        1: '1.0 / 5.0 (Poor Experience)',
+        2: '2.0 / 5.0 (Fair)',
+        3: '3.0 / 5.0 (Average Fit)',
+        4: '4.0 / 5.0 (Good Quality & Comfort)',
+        5: '5.0 / 5.0 (Excellent Fit & Comfort)'
+      };
+
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-rating'));
+          selectedRating = val;
+          ratingValInput.value = val;
+          label.textContent = labelsMap[val] || `${val}.0 / 5.0`;
+
+          stars.forEach((s, idx) => {
+            s.classList.toggle('active', idx < val);
+          });
+        });
+      });
+    }
+
+    function setupPhotoPresets() {
+      const presets = document.querySelectorAll('#photoPresets .photo-preset-item');
+      const hiddenInput = document.getElementById('selectedPhotoUrl');
+
+      presets.forEach(p => {
+        p.addEventListener('click', () => {
+          presets.forEach(item => item.classList.remove('selected'));
+          p.classList.add('selected');
+          hiddenInput.value = p.getAttribute('data-photo');
+        });
+      });
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const dataUrl = e.target.result;
+          document.getElementById('selectedPhotoUrl').value = dataUrl;
+          document.querySelectorAll('#photoPresets .photo-preset-item').forEach(i => i.classList.remove('selected'));
+          showToast('Custom photo attached successfully!', 'success');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleFeedbackSubmission(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('fbCustName').value.trim();
+      const city = document.getElementById('fbCity').value.trim();
+      const orderId = document.getElementById('fbOrderId').value.trim();
+      const productName = document.getElementById('fbProductName').value.trim();
+      const category = document.getElementById('fbCategory').value;
+      const fit = document.getElementById('fbFit').value;
+      const comment = document.getElementById('fbComment').value.trim();
+      let photo = document.getElementById('selectedPhotoUrl').value;
+
+      if (!category) {
+        showToast('Please select a category', 'error');
+        return;
+      }
+      if (!fit) {
+        showToast('Please select a fit & comfort assessment', 'error');
+        return;
+      }
+
+      // If no photo was selected or uploaded, provide a neutral trial image
+      if (!photo) {
+        photo = 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80';
+      }
+
+      const newReview = {
+        id: 'rev-user-' + Date.now(),
+        customerName: name,
+        city: city || 'Verified Buyer',
+        orderId: orderId || undefined,
+        productName: productName,
+        category: category,
+        rating: selectedRating,
+        fit: fit,
+        comment: comment,
+        photo: photo,
+        date: 'Just now',
+        verified: true
+      };
+
+      Storage.addReview(newReview);
+      showToast('Thank you! Your trial review has been posted.', 'success');
+
+      // Clear cached order data so fresh visits stay clean
+      try {
+        localStorage.removeItem('trendnext_last_order');
+      } catch (e) {}
+
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('fbSuccessNotice').style.display = 'block';
+
+      // Auto redirect to trials.html after 2.5 seconds
+      setTimeout(() => {
+        window.location.href = 'trials.html';
+      }, 2500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initFeedbackForm();
+    });
+  </script>
+</body>
+</html>

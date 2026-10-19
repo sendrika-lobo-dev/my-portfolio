@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment & Checkout Simulation | TrendNEXT</title>
+  <meta name="description" content="Simulated secure payment and checkout page for TrendNEXT fashion shopping.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span class="tagline">✨ BE THE TREND WHERE FASHION MEETS COMFORT ✨</span>
+    <span class="coupon-pill">
+      100% SECURE DEMO CHECKOUT SIMULATION
+    </span>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">TrendNEXT<span class="dot">.</span></span>
+        <span class="brand-sub">Fashion & Comfort</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="index.html#catalog" class="nav-link">Catalog</a>
+        <a href="wishlist.html" class="nav-link">Wishlist</a>
+        <a href="trials.html" class="nav-link">Trials</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <a href="payment.html" class="nav-link active">Payment</a>
+        <a href="feedback.html" class="nav-link">Feedback</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="index.html#catalog" class="nav-action-btn" title="Search Catalog">🔍</a>
+        <a href="wishlist.html" class="nav-action-btn" title="My Wishlist">
+          ♥
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="cart.html" class="nav-action-btn" title="My Cart">
+          🛒
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="drawer-header">
+        <span class="brand-logo" style="font-size: 1.4rem;">TrendNEXT<span class="dot">.</span></span>
+        <button id="closeMobileNav" style="font-size: 1.5rem; color: var(--text-primary);">✕</button>
+      </div>
+      <ul class="drawer-nav-list">
+        <li><a href="index.html" class="drawer-nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="drawer-nav-link">ℹ About Us</a></li>
+        <li><a href="index.html#catalog" class="drawer-nav-link">🛍️ Explore Catalog</a></li>
+        <li><a href="wishlist.html" class="drawer-nav-link">♥ My Wishlist</a></li>
+        <li><a href="trials.html" class="drawer-nav-link">📸 Customer Trials</a></li>
+        <li><a href="cart.html" class="drawer-nav-link">🛒 Shopping Cart</a></li>
+        <li><a href="payment.html" class="drawer-nav-link active">💳 Payment & Checkout</a></li>
+        <li><a href="feedback.html" class="drawer-nav-link">⭐ Customer Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main style="padding: 3rem 0 5rem;">
+    <div class="container">
+      
+      <!-- Top Title -->
+      <div style="margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="section-tag" style="margin-bottom: 0;">Demo Sandbox</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">No actual money is charged</span>
+        </div>
+        <h1 style="font-size: 2rem; margin: 0.5rem 0 0.25rem;">Checkout & Payment Simulation</h1>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          Enter your demo delivery address and choose a payment method to test the seamless order flow.
+        </p>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handlePaymentSimulation(event)">
+        <div class="payment-layout">
+          
+          <!-- Left Column: Address & Payment Methods -->
+          <div>
+            
+            <!-- Address Form Card -->
+            <div class="checkout-card">
+              <h3>📍 1. Delivery & Contact Details</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="custName">Full Name *</label>
+                  <input type="text" id="custName" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="custPhone">Phone Number *</label>
+                  <input type="tel" id="custPhone" class="form-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group form-full">
+                  <label class="form-label" for="custEmail">Email Address *</label>
+                  <input type="email" id="custEmail" class="form-input" placeholder="name@example.com" required>
+                </div>
+
+                <div class="form-group form-full">
+                  <label class="form-label" for="custAddress">Street Address / House No. / Landmark *</label>
+                  <input type="text" id="custAddress" class="form-input" placeholder="House / Flat No., Street, Landmark" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="custCity">City *</label>
+                  <input type="text" id="custCity" class="form-input" placeholder="City / Town" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="custState">State *</label>
+                  <select id="custState" class="form-select" required>
+                    <option value="" disabled selected>Select State</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Delhi NCR">Delhi NCR</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Other">Other State</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="custPin">PIN Code *</label>
+                  <input type="text" id="custPin" class="form-input" placeholder="6-digit PIN Code" pattern="[0-9]{6}" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Method Card -->
+            <div class="checkout-card">
+              <h3>💳 2. Choose Payment Method (Simulation)</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                Select any simulated payment channel. All choices will process safely in test mode.
+              </p>
+
+              <div class="payment-method-selector">
+                <!-- UPI -->
+                <label class="payment-method-option selected" onclick="selectPaymentMethod(this, 'upi')">
+                  <input type="radio" name="payMethod" value="upi" checked>
+                  <div style="flex-grow: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <strong>UPI (Google Pay / PhonePe / Paytm / BHIM)</strong>
+                      <span style="font-size: 0.75rem; background: #d1fae5; color: #065f46; padding: 0.2rem 0.5rem; border-radius: var(--radius-full); font-weight: 700;">Instant Demo</span>
+                    </div>
+                    <div id="upiExtraField" style="margin-top: 0.6rem;">
+                      <input type="text" class="form-input" placeholder="Enter UPI ID (e.g. username@upi or mobile@bank)" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                    </div>
+                  </div>
+                </label>
+
+                <!-- Cards -->
+                <label class="payment-method-option" onclick="selectPaymentMethod(this, 'card')">
+                  <input type="radio" name="payMethod" value="card">
+                  <div style="flex-grow: 1;">
+                    <strong>Credit / Debit / ATM Card</strong>
+                    <div id="cardExtraField" style="margin-top: 0.6rem; display: none;">
+                      <div class="form-grid" style="gap: 0.5rem;">
+                        <input type="text" class="form-input form-full" placeholder="Card Number (e.g. 4444 5555 6666 7777)" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                        <input type="text" class="form-input" placeholder="MM/YY" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                        <input type="password" class="form-input" placeholder="CVV" maxlength="3" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                      </div>
+                    </div>
+                  </div>
+                </label>
+
+                <!-- Net Banking -->
+                <label class="payment-method-option" onclick="selectPaymentMethod(this, 'netbanking')">
+                  <input type="radio" name="payMethod" value="netbanking">
+                  <div style="flex-grow: 1;">
+                    <strong>Net Banking (SBI, HDFC, ICICI, Axis)</strong>
+                  </div>
+                </label>
+
+                <!-- Cash on Delivery -->
+                <label class="payment-method-option" onclick="selectPaymentMethod(this, 'cod')">
+                  <input type="radio" name="payMethod" value="cod">
+                  <div style="flex-grow: 1;">
+                    <strong>Cash on Delivery (Pay at Doorstep)</strong>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Live Order Summary -->
+          <div>
+            <div class="order-summary-card" style="position: sticky; top: 5.5rem;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Order Review</h3>
+
+              <!-- Cart preview list -->
+              <div id="payOrderItemsList" style="max-height: 200px; overflow-y: auto; margin-bottom: 1.25rem; padding-right: 0.5rem;">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Coupon Bar -->
+              <div class="coupon-box" style="margin-top: 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--primary);">
+                  <span>🎁 Promo FIRST10</span>
+                  <span id="payCouponTag">Checking...</span>
+                </div>
+              </div>
+
+              <div class="order-summary-row">
+                <span>Subtotal</span>
+                <span id="paySubtotal">₹0</span>
+              </div>
+
+              <div class="order-summary-row" id="payDiscountRow" style="color: var(--success); display: none;">
+                <span>Beginner 10% Discount</span>
+                <span id="payDiscount">-₹0</span>
+              </div>
+
+              <div class="order-summary-row">
+                <span>Delivery</span>
+                <span id="payDelivery" style="color: var(--success);">FREE</span>
+              </div>
+
+              <div class="order-summary-row total">
+                <span>Total Amount</span>
+                <span id="payFinalTotal">₹0</span>
+              </div>
+
+              <button type="submit" class="btn btn-accent btn-full btn-lg" id="paySubmitBtn" style="margin-top: 1.5rem;">
+                🔒 Complete Demo Payment
+              </button>
+
+              <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.85rem;">
+                By confirming, you will be shown the simulated payment processing screen and then redirected to the feedback review form.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Payment Processing & Success Simulation Modal -->
+  <div class="modal-backdrop" id="paymentModalBackdrop">
+    <div class="modal-box">
+      <!-- State 1: Processing Animation -->
+      <div id="modalStateProcessing">
+        <div class="modal-spinner"></div>
+        <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">Processing Demo Payment...</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+          Securing encrypted connection with simulated payment gateway. Please do not refresh.
+        </p>
+      </div>
+
+      <!-- State 2: Success Animation -->
+      <div id="modalStateSuccess" style="display: none;">
+        <div class="modal-success-icon">✓</div>
+        <h3 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.35rem;">Payment Successful!</h3>
+        <p style="font-size: 0.95rem; color: var(--success); font-weight: 700; margin-bottom: 0.5rem;" id="modalOrderIdText">
+          Order ID: TN-849204
+        </p>
+        <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
+          Thank you for choosing TrendNEXT! Your stylish package is being prepared with utmost care.
+        </p>
+
+        <div style="background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-primary);">
+          Redirecting to Customer Feedback page in <strong id="redirectCountdown" style="color: var(--accent); font-size: 1.1rem;">3</strong>s...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-logo" style="color: #ffffff;">TrendNEXT<span class="dot">.</span></span>
+          <p>
+            <strong>"BE THE TREND WHERE FASHION MEETS COMFORT"</strong><br>
+            All products strictly below ₹5000.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#catalog">Explore Catalog</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="trials.html">Customer Trials</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="payment.html">Payment Simulation</a></li>
+            <li><a href="feedback.html">Submit Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>10% Off Promo</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Code <strong>FIRST10</strong> is enabled.
+          </p>
+          <a href="feedback.html" class="btn btn-sm btn-outline-dark" style="color: #fff; border-color: #475569;">Write Review</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 TrendNEXT. "Be the Trend Where Fashion Meets Comfort".</p>
+        <p>Built with HTML5, CSS3 & JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function renderPaymentOrderPreview() {
+      const cart = Storage.getCart();
+      const itemsList = document.getElementById('payOrderItemsList');
+      const submitBtn = document.getElementById('paySubmitBtn');
+
+      if (cart.length === 0) {
+        itemsList.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+            <p style="margin-bottom: 0.5rem;">Your shopping cart is empty.</p>
+            <a href="index.html#catalog" style="color: var(--primary); font-weight: 700; text-decoration: underline;">Browse Catalog to Add Items</a>
+          </div>
+        `;
+        document.getElementById('paySubtotal').textContent = '₹0';
+        document.getElementById('payDiscountRow').style.display = 'none';
+        document.getElementById('payCouponTag').textContent = 'None';
+        document.getElementById('payDelivery').textContent = '₹0';
+        document.getElementById('payFinalTotal').textContent = '₹0';
+        submitBtn.textContent = '🔒 Cart is Empty';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        submitBtn.style.cursor = 'not-allowed';
+        return;
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+
+      itemsList.innerHTML = cart.map(item => `
+        <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem; font-size: 0.85rem;">
+          <img src="${item.image}" alt="${item.title}" style="width: 42px; height: 50px; object-fit: cover; border-radius: var(--radius-sm);" onerror="this.onerror=null; this.src='images/girls_collection.jpg';">
+          <div style="flex-grow: 1;">
+            <div style="font-weight: 700; line-height: 1.2;">${item.title}</div>
+            <div style="color: var(--text-muted); font-size: 0.75rem;">Size: ${item.size || 'Std'} | Qty: ${item.qty}</div>
+          </div>
+          <div style="font-weight: 800;">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+        </div>
+      `).join('');
+
+      const { subtotal, discount, deliveryFee, finalTotal, coupon } = calculateCartTotals();
+
+      document.getElementById('paySubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      
+      const discountRow = document.getElementById('payDiscountRow');
+      const couponTag = document.getElementById('payCouponTag');
+
+      if (coupon === 'FIRST10' && discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('payDiscount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
+        couponTag.textContent = `Applied (-₹${discount})`;
+      } else {
+        discountRow.style.display = 'none';
+        couponTag.textContent = 'None';
+      }
+
+      document.getElementById('payDelivery').textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
+      document.getElementById('payFinalTotal').textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+      document.getElementById('paySubmitBtn').textContent = `🔒 Pay Securely ₹${finalTotal.toLocaleString('en-IN')}`;
+    }
+
+    function selectPaymentMethod(labelElement, method) {
+      document.querySelectorAll('.payment-method-option').forEach(opt => opt.classList.remove('selected'));
+      labelElement.classList.add('selected');
+
+      const upiField = document.getElementById('upiExtraField');
+      const cardField = document.getElementById('cardExtraField');
+
+      if (upiField) upiField.style.display = method === 'upi' ? 'block' : 'none';
+      if (cardField) cardField.style.display = method === 'card' ? 'block' : 'none';
+    }
+
+    function handlePaymentSimulation(event) {
+      event.preventDefault();
+
+      const cart = Storage.getCart();
+      if (cart.length === 0) {
+        showToast('Your cart is empty! Please add items before checking out.', 'error');
+        return;
+      }
+
+      const custName = document.getElementById('custName').value.trim();
+      const custCity = document.getElementById('custCity').value.trim();
+      const primaryItem = cart[0].title;
+      const primaryCat = cart[0].category || 'women';
+      const orderId = 'TN-' + Math.floor(100000 + Math.random() * 900000);
+
+      // Save order metadata in localStorage for feedback page
+      localStorage.setItem('trendnext_last_order', JSON.stringify({
+        orderId,
+        customerName: custName,
+        city: custCity,
+        productName: primaryItem,
+        category: primaryCat
+      }));
+
+      // Clear the cart on successful checkout
+      Storage.setCart([]);
+      Storage.setCoupon(null);
+
+      // Open Modal
+      const modal = document.getElementById('paymentModalBackdrop');
+      const stateProc = document.getElementById('modalStateProcessing');
+      const stateSuccess = document.getElementById('modalStateSuccess');
+      const orderIdText = document.getElementById('modalOrderIdText');
+      const countdownEl = document.getElementById('redirectCountdown');
+
+      modal.classList.add('active');
+      stateProc.style.display = 'block';
+      stateSuccess.style.display = 'none';
+
+      // 2 seconds processing
+      setTimeout(() => {
+        stateProc.style.display = 'none';
+        stateSuccess.style.display = 'block';
+        orderIdText.textContent = `Order ID: ${orderId}`;
+
+        // 3 second countdown redirect to feedback.html
+        let count = 3;
+        const interval = setInterval(() => {
+          count--;
+          if (countdownEl) countdownEl.textContent = count;
+          if (count <= 0) {
+            clearInterval(interval);
+            window.location.href = `feedback.html?orderId=${encodeURIComponent(orderId)}&name=${encodeURIComponent(custName)}&item=${encodeURIComponent(primaryItem)}&cat=${encodeURIComponent(primaryCat)}`;
+          }
+        }, 1000);
+      }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPaymentOrderPreview();
+    });
+  </script>
+</body>
+</html>

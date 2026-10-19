@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TrendNEXT - Fashion Meets Comfort</title>
+  <meta name="description"
+    content="Learn about TrendNEXT's mission to bring stylish, comfortable fashion for Women, Men, Girls and Boys under ₹5000.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span class="tagline">✨ BE THE TREND WHERE FASHION MEETS COMFORT ✨</span>
+    <span class="coupon-pill"
+      onclick="navigator.clipboard.writeText('FIRST10'); showToast('Coupon FIRST10 copied! (10% OFF)');">
+      USE CODE: <strong>FIRST10</strong> FOR 10% OFF
+    </span>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">TrendNEXT<span class="dot">.</span></span>
+        <span class="brand-sub">Fashion & Comfort</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="index.html#catalog" class="nav-link">Catalog</a>
+        <a href="wishlist.html" class="nav-link">Wishlist</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+        <a href="payment.html" class="nav-link">Payment</a>
+        <a href="feedback.html" class="nav-link">Feedback</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="index.html#catalog" class="nav-action-btn" title="Search Catalog">🔍</a>
+        <a href="wishlist.html" class="nav-action-btn" title="My Wishlist">
+          ♥
+          <span class="badge-count wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="cart.html" class="nav-action-btn" title="My Cart">
+          🛒
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </a>
+        <button class="mobile-toggle" id="mobileNavToggle" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="drawer-header">
+        <span class="brand-logo" style="font-size: 1.4rem;">TrendNEXT<span class="dot">.</span></span>
+        <button id="closeMobileNav" style="font-size: 1.5rem; color: var(--text-primary);">✕</button>
+      </div>
+      <ul class="drawer-nav-list">
+        <li><a href="index.html" class="drawer-nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="drawer-nav-link active">ℹ About Us</a></li>
+        <li><a href="index.html#catalog" class="drawer-nav-link">🛍️ Explore Catalog</a></li>
+        <li><a href="wishlist.html" class="drawer-nav-link">♥ My Wishlist</a></li>
+        <li><a href="cart.html" class="drawer-nav-link">🛒 Shopping Cart</a></li>
+        <li><a href="payment.html" class="drawer-nav-link">💳 Payment & Checkout</a></li>
+        <li><a href="feedback.html" class="drawer-nav-link">⭐ Customer Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <!-- About Hero -->
+    <section class="hero" style="padding: 4rem 0;">
+      <div class="container" style="text-align: center; max-width: 800px;">
+        <span class="hero-tag">🌟 Our Story & Philosophy</span>
+        <h1 class="hero-title" style="margin-bottom: 1.25rem;">
+          Redefining Everyday Luxury <br><span class="highlight">Under ₹5000</span>
+        </h1>
+        <p class="hero-desc" style="margin: 0 auto 2rem;">
+          At <strong>TrendNEXT</strong>, we believe you shouldn't have to compromise between runaway elegance and
+          all-day ease. Our mantra is simple: <em>"BE THE TREND WHERE FASHION MEETS COMFORT."</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission & Core Story -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+          <div>
+            <span class="section-tag">Who We Are</span>
+            <h2 class="section-title" style="margin-bottom: 1.25rem;">Democratizing Great Style For Everyone</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 1.05rem;">
+              Inspired by the accessibility and direct-to-consumer value of modern e-commerce,
+              <strong>TrendNEXT</strong> was built to elevate the online apparel shopping experience with an intuitive,
+              premium, and aesthetic interface.
+            </p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1rem;">
+              Whether it’s traditional Onam Kasavu & pure silk sarees, handblock Kurta with Palazzo sets, Korean baggy pants,
+              modern dresses, or comfy short kurta combo sets, every piece in our catalog is handpicked
+              with strict quality checks and guaranteed under ₹5000.
+            </p>
+            <div style="display: flex; gap: 1rem;">
+              <a href="index.html#catalog" class="btn btn-primary">Browse The Catalog →</a>
+              <a href="feedback.html" class="btn btn-outline-dark">Customer Reviews ⭐</a>
+            </div>
+          </div>
+
+          <div style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
+              alt="Fashion Showroom & Design"
+              style="border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); width: 100%; height: 380px; object-fit: cover;">
+            <div
+              style="position: absolute; bottom: -20px; right: -20px; background: var(--bg-surface); padding: 1.25rem 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); border: 1px solid var(--border-light);">
+              <span
+                style="font-size: 1.75rem; font-weight: 800; color: var(--primary); display: block; font-family: var(--font-heading);">100%</span>
+              <span style="font-size: 0.825rem; color: var(--text-secondary); font-weight: 600;">Priced Under
+                ₹5000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Pillars -->
+    <section class="section"
+      style="background: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Our 4 Core Pillars</span>
+          <h2 class="section-title">Why TrendNEXT Stands Out</h2>
+          <p class="section-desc">We blend modern aesthetic design, transparent reviews, and customer-first convenience.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon-wrap" style="background: #e0e7ff; color: #4338ca;">🏷️</div>
+            <h4>Affordable Luxury</h4>
+            <p>Every single item is strictly under ₹5000, giving you fashion without painful price tags.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap" style="background: #fce7f3; color: #db2777;">🌿</div>
+            <h4>Fabric-First Comfort</h4>
+            <p>Tested for soft skin-touch, lightweight breathability, and non-wrinkling durability.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap" style="background: #d1fae5; color: #059669;">⭐</div>
+            <h4>Verified Reviews</h4>
+            <p>Authentic feedback and ratings uploaded by real customers for confident shopping.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrap" style="background: #fef3c7; color: #d97706;">🎁</div>
+            <h4>Beginner Bonus</h4>
+            <p>Flat 10% instant discount on your first checkout using coupon code <strong>FIRST10</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BCA Project Info Section -->
+    <section class="section">
+      <div class="container">
+        <div
+          style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); color: #ffffff; border-radius: var(--radius-xl); padding: 3rem; box-shadow: var(--shadow-lg);">
+          <div style="max-width: 750px; margin: 0 auto; text-align: center;">
+            <span class="hero-tag" style="background: rgba(255,255,255,0.15); color: #fed7aa;">🎓 Academic Project
+              Showcase</span>
+            <h2 style="font-size: 2.2rem; color: #ffffff; margin: 1rem 0;">Built for Excellence & Innovation</h2>
+            <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">
+              <strong>TrendNEXT</strong> is designed with clean, modular HTML5 semantic architecture, responsive vanilla
+              CSS3 with glassmorphic tokens, and vanilla JavaScript utilizing browser LocalStorage for client-side state
+              persistence across all independent webpages.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+              <span
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600;">HTML5
+                Semantics</span>
+              <span
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600;">Vanilla
+                CSS3 Glassmorphism</span>
+              <span
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600;">LocalStorage
+                Persistence</span>
+              <span
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600;">Simulated
+                Payment & Reviews Engine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand-logo" style="color: #ffffff;">TrendNEXT<span class="dot">.</span></span>
+          <p>
+            <strong>"BE THE TREND WHERE FASHION MEETS COMFORT"</strong><br>
+            Delivering high fashion and utmost comfort across India.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#catalog">Explore Catalog</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="payment.html">Payment Simulation</a></li>
+            <li><a href="feedback.html">Customer Feedback & Reviews</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>New User Offer</h4>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Use coupon <strong>FIRST10</strong> during checkout to claim 10% off.
+          </p>
+          <a href="index.html#catalog" class="btn btn-sm btn-accent">Start Shopping →</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 TrendNEXT. "Be the Trend Where Fashion Meets Comfort".</p>
+        <p>Built with HTML5, CSS3 & JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
